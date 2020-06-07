@@ -3,6 +3,8 @@
 
 A simple website for Icecast 2. Works with any Icecast2 make your own branding.
 
+Example avalible at: https://anal.cricket
+
 Appropriate httpd config:
 
 	<VirtualHost *:80>
