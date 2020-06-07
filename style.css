@@ -1,0 +1,84 @@
+body {
+	background-color:#008161;
+}
+.container {
+	min-height: 10em;
+	display: table;
+	height: 100%;
+	left: 0;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	background-image:linear-gradient(to bottom, #88b0a1, #dff0eb, #dff0eb, #dff0eb, #dff0eb);
+}
+.box {
+    text-align: center;
+    vertical-align: middle;
+    display: table-cell;
+
+}
+.details {
+	background-color:#88b0a1;
+	width:70%;
+	height:35%;
+	margin-left:auto;
+	margin-right:auto;
+	border:3px solid #8d0000;
+	border-radius:20px;
+	opacity: 0.75;
+	box-shadow: 0 0 15px 10px #b5d4c7;
+	max-width:700px;
+}
+.header {
+	text-align: left;
+	margin-left:15px;
+	margin-top:10px;
+	font-size: 24pt;
+	font-family: 'IBM Plex Mono';
+	margin-bottom: 0px;
+	color: #8d0000;
+}
+.detail {
+	font-size: 12pt;
+	text-align: right;
+	color:#8d0000;
+	font-family: 'IBM Plex Mono';
+	margin:0;
+	margin-right: 15px;
+}
+.icon {
+	height:34pt;
+	transform: translateY(18%);
+}
+.space {
+	background-image: url("./soundwave.svg");
+	background-repeat: repeat-x;
+	animation: marquee 10s infinite linear;
+	height:40%;
+	background-size:40%;
+	opacity: 0.9;
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+.link {
+	font-size: 13pt;
+	color: #8d0000;
+	opacity: 0.6;
+}
+.listeners {
+	float:left;
+	color:#8d0000;
+	font-family: 'IBM Plex Mono';
+	clear: left;
+	margin: 0;
+	margin-left: 10px;
+}
+@keyframes marquee {
+	0% {
+		background-position: 100%;
+	}
+
+	100% {
+		background-position: -100%;
+	}
+}
