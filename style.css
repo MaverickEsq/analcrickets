@@ -1,5 +1,6 @@
 body {
-	background-color:#008161;
+	background-color:transparent;
+	overflow-y:hidden;
 }
 .container {
 	min-height: 10em;
@@ -72,6 +73,16 @@ body {
 	clear: left;
 	margin: 0;
 	margin-left: 10px;
+}
+#player {
+    height: 50px;
+    width: 40%;
+    border: none;
+}
+#infobox {
+	border:none;
+	height:6em;
+	width:100%;
 }
 @keyframes marquee {
 	0% {
