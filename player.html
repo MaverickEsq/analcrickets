@@ -1,0 +1,114 @@
+<html>
+	<head>
+		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+		<meta http-equiv="Pragma" content="no-cache" />
+		<meta http-equiv="Expires" content="0" />
+		<script>
+		function fmtMSS(s){return(s-(s%=60))/60+(9<s?':':':0')+s}
+		</script>
+		<style>
+		body {
+			background: transparent;
+		}
+		#player {
+			padding-left: 10px;
+			padding-right: 10px;
+			border: 3px solid #8d0000;
+		    border-top-color: rgb(141, 0, 0);
+		    border-top-style: solid;
+		    border-top-width: 3px;
+		    border-left-color: rgb(141, 0, 0);
+		    border-left-style: solid;
+		    border-left-width: 3px;
+			height: 30px;
+			border-radius: 5px;
+			padding-top: 4px;
+			border-top: 2px solid #8d0000;
+			border-left: 2px solid #8d0000;
+			background-color: #9ec0b4;
+			opacity: 0.8;
+			user-select: none;
+		}
+		#volup, #voldown {
+			float: right;
+			font-size: 11pt;
+			padding-top: 2px;
+			text-shadow: 0 0 0 #8d0000;
+			color: transparent;
+			padding-left: 4px;
+		}
+		#play {
+			float: left;
+			font-size: 19pt;
+			margin-top: -5px;
+			color:#8d0000;
+		}
+		#time {
+			font-size: 15pt;
+			padding-left: 24px;
+			float: left;
+			color: #8d0000;
+			padding-top: 1px;
+			font-family: "Lucida Console", Monaco, monospace;
+		}
+		#vol {
+			height: 60%;
+			float: right;
+			background-color: #9ec0b4;
+			border: 2px solid #8d0000;
+			width: 20%;
+			margin-top: 2px;
+			border-radius: 4px;
+			margin-right: 10px;
+		}
+		#bar {
+			background-color: #dff0eb;
+			height: 100%;
+			float: right;
+		}
+		</style>
+	</head>
+	<body>
+		<script>
+		//Basically browsers do a caching retard unless you put some random noise in the url
+		document.write('<audio id="track" src="/live?nocache=' + new Date().getTime() + '" type="audio/mpeg" autoplay ontimeupdate="document.getElementById(\'time\').innerText = fmtMSS(parseInt(this.currentTime))"></audio>');</script>
+		<div id="player">
+			<div class="control" id="play">&#10074;&#10074;</div>
+			<div id="time">00:00</div>
+			<div class="control" id="volup">&#10133;</div>
+			<div class="control" id="voldown">&#10134;</div>
+			<div id="vol"><div id="bar" style="width:100%;"></div></div>
+		</div>
+		<script>
+		//Add event
+		document.getElementById('player').addEventListener("click", player);
+		function player(e) {
+			//Get audio player
+			if (e.target) {
+				var a = document.getElementById("track");
+				if (e.target.id == "play") {
+					if (a.paused) {
+						a.play();
+						e.target.innerHTML = '&#10074;&#10074;';
+					} else {
+						a.pause();
+						e.target.innerHTML = '&#9655;';
+					}
+				} else {
+					var vol;
+					if (e.target.id == "volup") {
+						vol = a.volume+(a.volume/10)+0.01;
+					}
+					if (e.target.id == "voldown") {
+						vol = a.volume-(a.volume/10)-0.01;
+					}
+					if (vol > 1) { vol = 1; }
+					if (vol < 0) { vol = 0; }
+					a.volume = vol;
+					document.getElementById("bar").style.width = (a.volume * 100) + "%";
+				}
+			}
+		}
+		</script>
+	</body>
+</html>

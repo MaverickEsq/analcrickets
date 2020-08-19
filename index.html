@@ -12,12 +12,14 @@
 		<meta name="msapplication-TileColor" content="#da532c">
 		<meta name="msapplication-config" content="/favicons/browserconfig.xml">
 		<meta name="theme-color" content="#ffffff">
+		<meta charset="utf-8">
+		<meta name="Description" CONTENT="An internet radio playing chill things for people who like to dissassemble and reassemble their pens." />
 	</head>
 	<body>
 		<div class="container">
 			<div class="box">
 				<div class="details">
-					<div class="header"><img class="icon" src="./analcricket.png" alt="poopy"/>Anal Crickets<a class="link" target="player" href="./live">/live</a></div> 
+					<div class="header"><img class="icon" src="./analcricket.png" alt="poopy"/>Anal Crickets<a target="player" href="./live" class="link underlinent" id="link"><span class="underline">/live</span><span class="underlinent"> &#9655;</span></a></div> 
 					<div class="space"></div>
 					<iframe name="details" id="infobox" src="./info.php"></iframe>
 				</div>
@@ -25,5 +27,11 @@
 				</div>
 			</div>
 		</div>
+		<div class="bottom">
+			<a class="email" href='ma&#105;lto&#58;%73%&#54;C&#111;th&#64;f&#97;ggo&#116;&#37;&#55;&#50;y&#46;&#111;&#114;&#103;'>Contact/DMCA/wat</a>
+		</div>
+		<script>
+		document.getElementById('link').addEventListener("click", function(e) { document.getElementById('player').src="./player.html"; e.preventDefault();}, false);
+		</script>
 	</body>
 </html>
