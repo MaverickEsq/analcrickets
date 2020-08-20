@@ -54,7 +54,7 @@ body {
 .space {
 	background-image: url("./soundwave.svg");
 	background-repeat: repeat-x;
-	animation: marquee 10s infinite linear;
+	animation: marquee 10s infinite linear, bounce 1s infinite normal;
 	height:40%;
 	background-size:40%;
 	opacity: 0.9;
@@ -120,5 +120,13 @@ body {
 
 	100% {
 		background-position: -100%;
+	}
+}
+@keyframes bounce {
+	50% {
+		transform: scaleY(110%);
+	}
+	100% {
+		transform: scaleY(100%)
 	}
 }

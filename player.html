@@ -3,7 +3,6 @@
 		<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
 		<meta http-equiv="Pragma" content="no-cache" />
 		<meta http-equiv="Expires" content="0" />
-		<meta http-equiv="refresh" content="3600">
 		<script>
 		function fmtMSS(s){return(s-(s%=60))/60+(9<s?':':':0')+s}
 		</script>
@@ -30,7 +29,7 @@
 			opacity: 0.8;
 			user-select: none;
 		}
-		#volup, #voldown {
+		#volup, #voldown, #mute {
 			float: right;
 			font-size: 11pt;
 			padding-top: 2px;
@@ -68,18 +67,26 @@
 			height: 100%;
 			float: left;
 		}
+		#mute {
+			font-size: 15pt;
+			margin-top: -5px;
+			margin-right: 1px;
+			padding-left: 5px;
+			transform: rotatey(180deg);
+		}
 		</style>
 	</head>
 	<body>
 		<script>
 		//Basically browsers do a caching retard unless you put some random noise in the url
-		document.write('<audio id="track" src="/live?nocache=' + new Date().getTime() + '" type="audio/mpeg" autoplay ontimeupdate="document.getElementById(\'time\').innerText = fmtMSS(parseInt(this.currentTime))"></audio>');</script>
+		document.write('<audio id="track" src="https://anal.cricket/live?nocache=' + new Date().getTime() + '" type="audio/mpeg" autoplay ontimeupdate="document.getElementById(\'time\').innerText = fmtMSS(parseInt(this.currentTime)); if (parseInt(this.currentTime) == 3600) { this.src=\'https://anal.cricket/live?nocache=\' + new Date().getTime(); }"></audio>');</script>
 		<div id="player">
 			<div class="control" id="play">&#10074;&#10074;</div>
 			<div id="time">00:00</div>
 			<div class="control" id="volup">&#10133;</div>
 			<div id="vol"><div id="bar" style="width:100%;"></div></div>
 			<div class="control" id="voldown">&#10134;</div>
+			<div class="control" id="mute">&#128362;</div>
 		</div>
 		<script>
 		//Add event
@@ -95,13 +102,14 @@
 				var a = document.getElementById("track");
 				if (e.target.id == "play") {
 					if (a.paused) {
+						a.currentTime = a.duration-1;
 						a.play();
 						e.target.innerHTML = '&#10074;&#10074;';
 					} else {
 						a.pause();
 						e.target.innerHTML = '&#9655;';
 					}
-				} else {
+				} else if (e.target.id.match(/^vol/) != null)  {
 					var vol;
 					if (e.target.id == "volup") {
 						vol = a.volume+(a.volume/10)+0.01;
@@ -113,6 +121,9 @@
 					if (vol < 0) { vol = 0; }
 					a.volume = vol;
 					document.getElementById("bar").style.width = (a.volume * 100) + "%";
+				} else if (e.target.id == "mute") {
+					a.muted = !a.muted;
+					e.target.innerText = "\uD83D\uDD6A\u2007\uD83D\uDD68".replace(e.target.innerText, '');
 				}
 			}
 		}
