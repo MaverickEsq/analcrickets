@@ -79,7 +79,7 @@
 	<body>
 		<script>
 		//Basically browsers do a caching retard unless you put some random noise in the url
-		document.write('<audio id="track" src="https://anal.cricket/live?nocache=' + new Date().getTime() + '" type="audio/mpeg" autoplay ontimeupdate="document.getElementById(\'time\').innerText = fmtMSS(parseInt(this.currentTime)); if (parseInt(this.currentTime) == 3600) { this.src=\'https://anal.cricket/live?nocache=\' + new Date().getTime(); }"></audio>');</script>
+		document.write('<audio id="track" src="/live?nocache=' + new Date().getTime() + '" type="audio/mpeg" autoplay ontimeupdate="document.getElementById(\'time\').innerText = fmtMSS(parseInt(this.currentTime)); if (parseInt(this.currentTime) == 3600) { this.src=\'https://anal.cricket/live?nocache=\' + new Date().getTime(); }"></audio>');</script>
 		<div id="player">
 			<div class="control" id="play">&#10074;&#10074;</div>
 			<div id="time">00:00</div>
@@ -123,6 +123,7 @@
 					document.getElementById("bar").style.width = (a.volume * 100) + "%";
 				} else if (e.target.id == "mute") {
 					a.muted = !a.muted;
+										//Loud symbol | space hush symbol
 					e.target.innerText = "\uD83D\uDD6A\u2007\uD83D\uDD68".replace(e.target.innerText, '');
 				}
 			}
