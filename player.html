@@ -93,7 +93,7 @@
 	<body>
 		<script>
 		//Basically browsers do a caching retard unless you put some random noise in the url
-		document.write('<audio id="track" src="https://anal.cricket/live?nocache=' + new Date().getTime() + '" type="audio/mpeg" autoplay ontimeupdate="document.getElementById(\'time\').innerText = fmtMMSS(parseInt(this.currentTime)); if (parseInt(this.currentTime) == 3600) { this.src=\'https://anal.cricket/live?nocache=\' + new Date().getTime(); }"></audio>');</script>
+		document.write('<audio id="track" src="/live?nocache=' + new Date().getTime() + '" type="audio/mpeg" autoplay ontimeupdate="document.getElementById(\'time\').innerText = fmtMMSS(parseInt(this.currentTime)); if (parseInt(this.currentTime) == 3600) { this.src=\'https://anal.cricket/live?nocache=\' + new Date().getTime(); }"></audio>');</script>
 		<div id="player">
 			<div class="control" id="play">&#10074;&#10074;</div>
 			<div id="time"><div id="loading"></div></div>
