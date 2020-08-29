@@ -4,7 +4,7 @@
 		<meta http-equiv="Pragma" content="no-cache" />
 		<meta http-equiv="Expires" content="0" />
 		<script>
-		function fmtMSS(s){return(s-(s%=60))/60+(9<s?':':':0')+s}
+		function fmtMMSS(s){r=(s-(s%=60))/60+(9<s?':':':0')+s;return r.split(":")[0].length<2?'0'+r:r;}
 		</script>
 		<style>
 		body {
@@ -74,15 +74,29 @@
 			padding-left: 5px;
 			transform: rotatey(180deg);
 		}
+	    #loading:after {
+	      display: inline-block;
+	      animation: loading steps(1,end) 1s infinite;
+	      content: '..:..';
+	    }
+			
+	    @keyframes loading {
+	        0%   { content: '..:..'; }
+	        16%  { content: '...:.'; }
+	        32%  { content: '....:'; }
+	        52%  { content: '.....'; }
+	        68% { content: ':....'; }
+	        84% { content: '.:...'; }
+	    }
 		</style>
 	</head>
 	<body>
 		<script>
 		//Basically browsers do a caching retard unless you put some random noise in the url
-		document.write('<audio id="track" src="/live?nocache=' + new Date().getTime() + '" type="audio/mpeg" autoplay ontimeupdate="document.getElementById(\'time\').innerText = fmtMSS(parseInt(this.currentTime)); if (parseInt(this.currentTime) == 3600) { this.src=\'https://anal.cricket/live?nocache=\' + new Date().getTime(); }"></audio>');</script>
+		document.write('<audio id="track" src="https://anal.cricket/live?nocache=' + new Date().getTime() + '" type="audio/mpeg" autoplay ontimeupdate="document.getElementById(\'time\').innerText = fmtMMSS(parseInt(this.currentTime)); if (parseInt(this.currentTime) == 3600) { this.src=\'https://anal.cricket/live?nocache=\' + new Date().getTime(); }"></audio>');</script>
 		<div id="player">
 			<div class="control" id="play">&#10074;&#10074;</div>
-			<div id="time">00:00</div>
+			<div id="time"><div id="loading"></div></div>
 			<div class="control" id="volup">&#10133;</div>
 			<div id="vol"><div id="bar" style="width:100%;"></div></div>
 			<div class="control" id="voldown">&#10134;</div>
