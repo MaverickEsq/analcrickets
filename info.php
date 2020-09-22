@@ -44,7 +44,7 @@ $stream = array(
 		);
 ?>
 
-<html>
+<html style="background-color:#88b0a1;">
 	<head>
 		<link rel="stylesheet" href="style.css" />
 		<link href="https://fonts.googleapis.com/css?family=IBM+Plex+Mono" rel="stylesheet">
